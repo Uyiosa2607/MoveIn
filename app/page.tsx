@@ -1,6 +1,46 @@
 import Header from "@/components/header";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import HomeListingCard from "@/components/home_listing_card";
+
+const mockData = [
+  {
+    name: "new apartment 1",
+    bathrooms: 2,
+    bedrooms: 2,
+    price: 2000,
+  },
+  {
+    name: "new apartment 2",
+    bathrooms: 2,
+    bedrooms: 2,
+    price: 2000,
+  },
+  {
+    name: "new apartment 3",
+    bathrooms: 2,
+    bedrooms: 2,
+    price: 2000,
+  },
+  {
+    name: "new apartment 4",
+    bathrooms: 2,
+    bedrooms: 2,
+    price: 2000,
+  },
+  {
+    name: "new apartment 5",
+    bathrooms: 2,
+    bedrooms: 2,
+    price: 2000,
+  },
+  {
+    name: "new apartment 6",
+    bathrooms: 2,
+    bedrooms: 2,
+    price: 2000,
+  },
+];
 
 export default function Home() {
   return (
@@ -48,7 +88,11 @@ export default function Home() {
         </div>
 
         {/* listing container */}
-        <div></div>
+        <div className="grid grid-cols-3 space-x-2 space-y-2 px-2 items-center">
+          {mockData.map((listing) => (
+            <HomeListingCard listing={listing} key={listing.name} />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import { Mail } from "lucide-react";
 export default function Header() {
   return (
-    <div className="p-4">
+    <div className="p-4 fixed bg-white z-[100] w-full text-neutral-800">
       <div className="flex items-center  justify-between flex-row">
         <div className="flex justify-center w-[70%] items-center  flex-row gap-14 font-medium text-sm">
           <p>Home</p>
