@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Bath, BedDouble, ChevronRight } from "lucide-react";
+import { Bath, BedDouble, ChevronRight, MapPin } from "lucide-react";
 
 interface CardProp {
   listing: {
@@ -12,7 +12,10 @@ interface CardProp {
 
 export default function HomeListingCard({ listing }: CardProp) {
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      <p className="w-fit p-1.5 font-semibold font-[Montserrat] capitalize absolute left-[5%] top-[7%] text-xs  bg-yellow-400 text text-neutral-800 ">
+        for rent
+      </p>
       <Image
         alt={listing?.name}
         width={500}
@@ -22,7 +25,7 @@ export default function HomeListingCard({ listing }: CardProp) {
         className="object-fit rounded-t-3xl w-full h-[190px]"
       />
       <div className="p-[8px] rounded-b-3xl bg-stone-100">
-        <p className="text-base mb-2.5 font-semibold font-[Montserrat]">
+        <p className="text-base w-full truncate mb-2.5 font-semibold font-[Montserrat]">
           {listing?.name}
         </p>
         <div>
@@ -41,6 +44,12 @@ export default function HomeListingCard({ listing }: CardProp) {
             ) : (
               <p className="text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
             )}
+          </div>
+          <div className="mb-2 flex items-center gap-1 flex-row">
+            <MapPin size={14} />
+            <p className="text-sm w-full font-medium font truncate">
+              location text
+            </p>
           </div>
           <div className="w-[95%] margin-auto my-1.5 border-b-2 border-neutral-500" />
           <div className="flex items-center w-full justify-between flex-row">
