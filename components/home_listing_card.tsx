@@ -42,7 +42,7 @@ export default function HomeListingCard({ listing }: CardProp) {
               <p className="text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
             )}
           </div>
-          <div className="w-[95%] margin-auto my-1.5 border-b-2 border-neutral-800" />
+          <div className="w-[95%] margin-auto my-1.5 border-b-2 border-neutral-500" />
           <div className="flex items-center w-full justify-between flex-row">
             <p className="text-sm font-semibold text-neutral-800">
               ${listing?.price}
