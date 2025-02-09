@@ -54,15 +54,15 @@ export default function Home() {
           <div className="insert-0 w-full h-full bg-cover  absolute bg-[url('/hero_image.jpg')] opacity-90" />
 
           {/* Hero Text and button */}
-          <div className="z-[50] relative pl-6 text-white top-[30%] lg:top-[40%] w-full">
-            <h2 className="text-[1.4rem] leading-tight lg:text-5xl mb-4 w-[50%] capitalize font-semibold font-[Montserrat]">
+          <div className="z-[50] relative pl-3 lg:pl-6 text-white top-[20%] lg:top-[40%] w-full">
+            <h2 className="text-[1.4rem] leading-tight lg:text-5xl mb-1.5 lg:mb-4 w-[50%] capitalize font-semibold font-[Montserrat]">
               Find your dream house
             </h2>
-            <p className="text-sm mb-4 w-[55%] font-medium fonr-[Montserrat]">
+            <p className="text-sm mb-4 w-[75%] lg:w-[55%] font-medium font-[Montserrat]">
               explore our comprehensive listings of residential properties, from
               cozy starter homes to luxurious estates{" "}
             </p>
-            <button className="w-fit px-6 text-sm font-medium py-2 text-neutral-800 rounded-xl bg-yellow-400 ">
+            <button className="w-fit px-6 text-xs font-medium py-2 text-neutral-800 rounded-xl bg-yellow-400 ">
               Browse Now
             </button>
           </div>
@@ -84,7 +84,7 @@ export default function Home() {
         </div>
 
         {/* listing container */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
           {mockData.map((listing) => (
             <HomeListingCard listing={listing} key={listing.name} />
           ))}

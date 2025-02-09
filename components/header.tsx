@@ -8,7 +8,6 @@ export default function Header() {
 
   function toggleNav() {
     setNavOpen(!navOpen);
-    console.log(navOpen);
   }
 
   return (
@@ -19,7 +18,7 @@ export default function Header() {
         </div>
         <div
           className={`flex lg:flex lg:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 lg:pl-0  lg:pt-0 absolute lg:relative w-[50%]  lg:w-auto h-[100vh] lg:h-0 right-0 top-0  capitalize flex-col lg:flex-row gap-12 font-medium text-sm ${
-            navOpen ? "translate-x-0" : "translate-x-full"
+            navOpen ? "translate-x-0 overflow-y-clip" : "translate-x-full"
           }`}
         >
           <X
@@ -29,11 +28,12 @@ export default function Header() {
           <Link className=" hover:text-yellow-400" href="/">
             <p>Home</p>
           </Link>
-          <Link className=" hover:text-yellow-400" href="/abouts">
-            <p>about</p>
-          </Link>
+
           <Link className=" hover:text-yellow-400" href="/properties">
             <p>listings</p>
+          </Link>
+          <Link className=" hover:text-yellow-400" href="/abouts">
+            <p>about</p>
           </Link>
         </div>
         <div className="hidden lg:flex items-center gap-1">

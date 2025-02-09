@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Bath, BedDouble, ChevronRight, MapPin } from "lucide-react";
 import { Separator } from "./ui/separator";
+import { formatToNaira } from "@/lib/utils";
 
 interface CardProp {
   listing: {
@@ -46,7 +47,7 @@ export default function ListingCard({ listing }: CardProp) {
               <p className="text-xs lg:text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
             )}
           </div>
-          <div className="mb-2 flex items-center gap-1 flex-row">
+          <div className="hidden mb-2 lg:flex items-center gap-1 flex-row">
             <MapPin size={14} />
             <p className="text-xs lg:text-sm w-full font-medium font truncate">
               location text
@@ -55,9 +56,9 @@ export default function ListingCard({ listing }: CardProp) {
           <Separator className="w-[90%] mx-auto my-1.5 lg:my-2" />
           <div className="flex items-center w-full justify-between flex-row">
             <p className="text-xs lg:text-sm font-semibold text-neutral-800">
-              ${listing?.price}
+              {formatToNaira(listing?.price)}
             </p>
-            <div className="flex items-center ">
+            <div className="hidden items-center ">
               <p className="text-xs font-medium text-neutral-800">
                 view details
               </p>
