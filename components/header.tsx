@@ -13,9 +13,11 @@ export default function Header() {
   return (
     <div className="p-4 fixed bg-stone-100 top-0 z-[100] w-full text-neutral-800">
       <div className="flex items-center  justify-between flex-row">
-        <div>
-          <h3 className="font-bold text-lg">Brand Logo.</h3>
-        </div>
+        <Link href="/">
+          <div>
+            <h3 className="font-bold text-lg">Brand Logo.</h3>
+          </div>
+        </Link>
         <div
           className={`flex lg:flex lg:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 lg:pl-0  lg:pt-0 absolute lg:relative w-[50%]  lg:w-auto h-[100vh] lg:h-0 right-0 top-0  capitalize flex-col lg:flex-row gap-12 font-medium text-sm ${
             navOpen ? "translate-x-0 overflow-y-clip" : "translate-x-full"
