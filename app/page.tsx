@@ -58,7 +58,7 @@ export default function Home() {
             <h2 className="text-[1.4rem] leading-tight lg:text-5xl mb-1.5 lg:mb-4 w-[50%] capitalize font-semibold font-[Montserrat]">
               Find your dream house
             </h2>
-            <p className="text-sm mb-4 w-[75%] lg:w-[55%] font-medium font-[Montserrat]">
+            <p className="text-sm lg:text-base mb-4 w-[75%] lg:w-[40%] font-[Montserrat] font-medium ">
               explore our comprehensive listings of residential properties, from
               cozy starter homes to luxurious estates{" "}
             </p>
@@ -73,7 +73,7 @@ export default function Home() {
       {/* Details section */}
       <div className="container mx-auto w-full px-3 lg:w-[70%]">
         {/* listing section title bar */}
-        <div className="flex items-center pt-4 lg:pt-0 lg:mt-0 w-full mb-3 lg:mb-2.5 justify-between">
+        <div className="flex items-center pt-4 lg:pt-4 lg:mt-0 w-full mb-3 lg:mb-2.5 justify-between">
           <h3 className="font-medium text-base lg:text-2xl">Browse Listings</h3>
           <Link className=" hover:text-yellow-400" href="/properties">
             <div className="flex items-center gap-1 pr-2">

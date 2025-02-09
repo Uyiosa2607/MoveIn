@@ -28,7 +28,7 @@ export default function HomeListingCard({ listing }: CardProp) {
         className="object-fit rounded-t-2xl lg:rounded-t-3xl w-full h-[120px] lg:h-[190px]"
       />
       <div className="p-[8px] rounded-b-3xl bg-stone-100">
-        <p className="text-xs w-full truncate mb-2.5 font-semibold font-[Montserrat]">
+        <p className="text-xs lg:text-sm w-full truncate mb-2.5 font-semibold font-[Montserrat]">
           {listing?.name}
         </p>
         <div>
@@ -56,7 +56,7 @@ export default function HomeListingCard({ listing }: CardProp) {
           </div> */}
           <Separator className="my-1.5 lg:my-2" />
           <div className="flex items-center w-full justify-between flex-row">
-            <p className="text-xs font-semibold text-neutral-800">
+            <p className="text-xs lg:text-sm font-semibold text-neutral-800">
               {formatToNaira(listing?.price)}
             </p>
           </div>
