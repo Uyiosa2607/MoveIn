@@ -19,13 +19,15 @@ export default function Header() {
           </div>
         </Link>
         <div
-          className={`flex lg:flex lg:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 lg:pl-0  lg:pt-0 absolute lg:relative w-[50%]  lg:w-auto h-[100vh] lg:h-0 right-0 top-0  capitalize flex-col lg:flex-row gap-12 font-medium text-sm ${
-            navOpen ? "translate-x-0 overflow-y-clip" : "translate-x-full"
+          className={`flex md:flex md:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 md:pl-0  md:pt-0 absolute md:relative w-[50%]  md:w-auto h-[100vh] md:h-0 right-0 top-0  capitalize flex-col md:flex-row gap-12 font-medium text-sm ${
+            navOpen
+              ? "translate-x-0  overflow-y-clip"
+              : "translate-x-full md:translate-x-0"
           }`}
         >
           <X
             onClick={toggleNav}
-            className="lg:hidden absolute my-6 top-1 right-3"
+            className="md:hidden absolute my-6 top-1 right-3"
           />
           <Link className=" hover:text-yellow-400" href="/">
             <p>Home</p>
@@ -38,11 +40,11 @@ export default function Header() {
             <p>about</p>
           </Link>
         </div>
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1">
           <Mail size={15} />
           <p className="font-medium  text-sm">Get a Quote</p>
         </div>
-        <Menu onClick={toggleNav} className="block lg:hidden" />
+        <Menu onClick={toggleNav} className="block md:hidden" />
       </div>
     </div>
   );

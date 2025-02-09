@@ -27,7 +27,7 @@ export default function Properties() {
           </p>
           <ChevronRight size={15} />
         </div>
-        <div className="px-2 gap-y-6 gap-x-2.5 lg:gap-x-4 mt-4 grid grid-cols-2 lg:grid-cols-4">
+        <div className="px-2 gap-y-6 gap-x-2.5 lg:gap-x-4 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {mockData.map((listing) => (
             <ListingCard key={listing.name} listing={listing} />
           ))}

@@ -10,36 +10,42 @@ export const mockData = [
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
+    cat: "rent",
   },
   {
     name: "new apartment 2",
     bathrooms: 1,
     bedrooms: 1,
     price: 2000,
+    cat: "sale",
   },
   {
     name: "new apartment 3",
     bathrooms: 3,
     bedrooms: 3,
-    price: 2000,
+    price: 200000,
+    cat: "sale",
   },
   {
     name: "new apartment 4",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
+    cat: "rent",
   },
   {
     name: "new apartment 5",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
+    cat: "rent",
   },
   {
     name: "new apartment 6",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
+    cat: "rent",
   },
 ];
 
@@ -74,7 +80,9 @@ export default function Home() {
       <div className="container mx-auto w-full px-3 lg:w-[70%]">
         {/* listing section title bar */}
         <div className="flex items-center pt-4 lg:pt-4 lg:mt-0 w-full mb-3 lg:mb-2.5 justify-between">
-          <h3 className="font-medium text-base lg:text-2xl">Browse Listings</h3>
+          <h3 className="font-medium text-base lg:text-2xl">
+            Featured Listings
+          </h3>
           <Link className=" hover:text-yellow-400" href="/properties">
             <div className="flex items-center gap-1 pr-2">
               <p className="font-medium text-xs">view all</p>
