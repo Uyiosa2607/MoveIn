@@ -6,14 +6,13 @@ import {
   ChevronLeft,
   ChevronRight,
   Bath,
-  ArrowLeft,
   BedDouble,
   MapPin,
   Phone,
   Mail,
   Bookmark,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { formatToNaira } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,21 +20,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const mockIMGS = ["/banner.jpg", "/banner.jpg", "/banner.jpg"];
 
 export default function Listing() {
-  const router = useRouter();
+  //   const router = useRouter();
   const bathrooms: number = 2;
   const bedrooms: number = 4;
 
   return (
     <div className="bg-[#ffff] text-neutral-800">
       <Header />
-      <div className="container w-full px-2 lg:w-[70%] mx-auto">
-        <div
-          onClick={() => router.back()}
-          className="w-full mb-1.5 md:mb-4 text-neutral-800 mt-14 md:mt-20 flex items-center gap-1"
-        >
-          <ArrowLeft className="text-yellow-400" size={15} />
-          <p className="font-medium text-sm">listings</p>
-        </div>
+      <div className="container mt-16 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
         <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
           Property name
         </p>
@@ -91,13 +83,13 @@ export default function Listing() {
                 {formatToNaira(600000)}
               </p>
               <div className="flex mb-1.5 items-center gap-1">
-                <MapPin size={15} />
-                <p className="text-base leading-tight font-medium">
+                <MapPin size={16} />
+                <p className="text-base leading-tight mb-1.5 font-medium">
                   Somewhere in africa
                 </p>
               </div>
               <div className="flex items-center flex-row gap-10">
-                <div className="flex items-center flex-row ">
+                <div className="flex items-center gap-1 flex-row ">
                   <BedDouble size={14} />
                   {bedrooms === 1 ? (
                     <p className="text-xs md:text-sm font-medium">{`${bedrooms} Bedroom`}</p>
@@ -105,7 +97,7 @@ export default function Listing() {
                     <p className="text-xs md:text-sm font-medium">{`${bedrooms} Bedrooms`}</p>
                   )}
                 </div>
-                <div className="flex items-center  flex-row">
+                <div className="flex items-center gap-1 flex-row">
                   <Bath size={14} />
                   {bathrooms === 1 ? (
                     <p className="text-xs md:text-sm font-medium">{`${bathrooms} Bathroom`}</p>
@@ -128,7 +120,7 @@ export default function Listing() {
               </div>
             </div>
             <div className="flex-[1] flex flex-col justify-end">
-              <div className="flex  w-full pl-[5%] gap-1 items-center">
+              <div className="flex w-full pl-1 md:pl-[5%] gap-1 items-center">
                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>CN</AvatarFallback>
