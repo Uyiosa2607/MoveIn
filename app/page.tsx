@@ -1,9 +1,10 @@
-import Header from "@/components/header";
 import { ArrowRight } from "lucide-react";
+import Header from "@/components/header";
 import HomeListingCard from "@/components/home_listing_card";
 import Footer from "@/components/footer";
+import Link from "next/link";
 
-const mockData = [
+export const mockData = [
   {
     name: "new apartment 1",
     bathrooms: 2,
@@ -49,19 +50,19 @@ export default function Home() {
 
       {/* Hero Section */}
       <div className="w-full mb-10">
-        <div className="w-full h-[500px] relative px-4">
+        <div className="w-full h-[300px] py-10 lg:h-[500px] relative">
           <div className="insert-0 w-full h-full bg-cover  absolute bg-[url('/hero_image.jpg')] opacity-90" />
 
           {/* Hero Text and button */}
-          <div className="z-[50] relative pl-6 text-white top-[40%] w-full">
-            <h2 className="text-5xl mb-4 w-[50%] capitalize font-semibold font-[Montserrat]">
+          <div className="z-[50] relative pl-6 text-white top-[30%] lg:top-[40%] w-full">
+            <h2 className="text-[1.4rem] leading-tight lg:text-5xl mb-4 w-[50%] capitalize font-semibold font-[Montserrat]">
               Find your dream house
             </h2>
-            <p className="text-base mb-4 w-[40%] font-medium fonr-[Montserrat]">
+            <p className="text-sm mb-4 w-[55%] font-medium fonr-[Montserrat]">
               explore our comprehensive listings of residential properties, from
               cozy starter homes to luxurious estates{" "}
             </p>
-            <button className="w-fit px-6 font-medium py-2 text-neutral-800 rounded-xl bg-yellow-400 ">
+            <button className="w-fit px-6 text-sm font-medium py-2 text-neutral-800 rounded-xl bg-yellow-400 ">
               Browse Now
             </button>
           </div>
@@ -70,18 +71,20 @@ export default function Home() {
       {/* Hero section ends here */}
 
       {/* Details section */}
-      <div className="container mx-auto w-[70%]">
+      <div className="container mx-auto w-full px-3 lg:w-[70%]">
         {/* listing section title bar */}
-        <div className="flex items-center w-full mb-2.5 justify-between">
-          <h3 className="font-medium text-2xl">Browse Listings</h3>
-          <div className="flex items-center gap-1 pr-2">
-            <p className="font-medium text-xs">view all</p>
-            <ArrowRight size={14} />
-          </div>
+        <div className="flex items-center pt-4 lg:pt-0 lg:mt-0 w-full mb-3 lg:mb-2.5 justify-between">
+          <h3 className="font-medium text-base lg:text-2xl">Browse Listings</h3>
+          <Link className=" hover:text-yellow-400" href="/properties">
+            <div className="flex items-center gap-1 pr-2">
+              <p className="font-medium text-xs">view all</p>
+              <ArrowRight size={14} />
+            </div>
+          </Link>
         </div>
 
         {/* listing container */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {mockData.map((listing) => (
             <HomeListingCard listing={listing} key={listing.name} />
           ))}
@@ -89,15 +92,15 @@ export default function Home() {
         {/* listing container ends here */}
 
         {/* why choose  us section */}
-        <div className="bg-[url('/modern_house.jpg')] relative bg-center text-white bg-cover h-[420px] mt-10 w-full">
-          <div className="h-fit bg-stone-100 rounded-2xl right-[5%] top-[10%] absolute text-[#0b1d27] w-[400px] pl-7 pb-10 pt-5">
-            <h4 className="font-medium w-fit text-base mb-1.5 text-yellow-400">
+        <div className="bg-[url('/modern_house.jpg')] relative bg-center text-white bg-cover h-[300px] lg:h-[420px] mt-10 w-full">
+          <div className="h-fit bg-stone-100 rounded-2xl left-[5%] lg:left-0 lg:right-[5%] top-[8%] lg:top-[10%] absolute text-[#0b1d27] w-[320px] lg:w-[400px]  pl-3 lg:pl-7 pb-4 pt-2">
+            <h4 className="font-medium w-fit text-base mb-1 lg:mb-1.5 text-yellow-400">
               features
             </h4>
-            <h2 className="font-semibold w-fit mb-2.5 text-3xl ">
+            <h2 className="font-semibold w-fit mb-0.5 lg:mb-2.5 text-2xl lg:text-3xl ">
               Why choose us
             </h2>
-            <p className="text-sm w-[90%] font-medium mb-3">
+            <p className="text-sm w-[95%] font-medium mb-3 lg:mb-3">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. A
               corrupti delectus neque nihil repudiandae similique!
             </p>

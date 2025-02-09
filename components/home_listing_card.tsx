@@ -22,7 +22,7 @@ export default function HomeListingCard({ listing }: CardProp) {
         quality={100}
         height={500}
         src={"/banner.jpg"}
-        className="object-fit rounded-t-3xl w-full h-[190px]"
+        className="object-fit rounded-t-2xl lg:rounded-t-3xl w-full h-[190px]"
       />
       <div className="p-[8px] rounded-b-3xl bg-stone-100">
         <p className="text-base w-full truncate mb-2.5 font-semibold font-[Montserrat]">
