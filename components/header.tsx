@@ -11,7 +11,7 @@ export default function Header() {
   }
 
   return (
-    <div className="p-4 fixed bg-stone-100 top-0 z-[100] w-full text-neutral-800">
+    <div className="p-4 fixed bg-stone-100 mb-4 top-0 z-[100] w-full text-neutral-800">
       <div className="flex items-center  justify-between flex-row">
         <Link href="/">
           <div>
