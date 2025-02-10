@@ -31,12 +31,20 @@ interface Listing {
   img: string[];
   description: string;
   location: string;
+  author_id: string;
+}
+
+interface agentINFO {
+  name: string;
+  email: string;
+  phone: string;
 }
 
 export default function ListingDetails() {
   const [currentImage, setCurrentImage] = useState<number>(0);
   const [listing, setListing] = useState<Listing | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [agentDetails, setAgentDetails] = useState<agentINFO | null>(null);
+  // const [loading, setLoading] = useState<boolean>(false);
 
   const params = useParams();
 
@@ -49,6 +57,22 @@ export default function ListingDetails() {
         .single();
       if (!error) {
         setListing(data);
+        getAgentInfo(data.author_id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getAgentInfo(id: string) {
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .select()
+        .eq("id", id)
+        .single();
+      if (!error) {
+        setAgentDetails(data);
         console.log(data);
       }
     } catch (error) {
@@ -91,8 +115,8 @@ export default function ListingDetails() {
               width={10000}
               quality={100}
               height={1000}
-              src={mockIMGS[currentImage]}
-              alt="listing image"
+              src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing?.img[currentImage]}`}
+              alt={"property_image"}
               className="w-full rounded-xl h-[300px] md:h-[400px] object-cover"
             />
 
@@ -110,7 +134,7 @@ export default function ListingDetails() {
                     price: listing.price,
                     bathrooms: listing.bathrooms,
                     bedrooms: listing.bedrooms,
-                    img: "/modern_house.jpg",
+                    img: listing.img[0],
                     id: listing.id,
                   })
                 }
@@ -131,15 +155,15 @@ export default function ListingDetails() {
             </div>
           </div>
           <div className="flex-[1.2] grid gap-2 grid-cols-4">
-            {mockIMGS.map((image, index) => (
+            {listing?.img.map((image, index) => (
               <Image
                 key={index}
                 alt="alt"
                 width={200}
                 height={200}
-                src={image}
+                src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${image}`}
                 quality={100}
-                className="h-200 rounded-md object-cover w-auto"
+                className="h-[100px] rounded-md object-cover w-full"
               />
             ))}
           </div>
@@ -191,8 +215,8 @@ export default function ListingDetails() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className="text-sm">
-                  <p className="font-medium capitalize">agent name</p>
-                  <p>email</p>
+                  <p className="font-medium capitalize">{agentDetails?.name}</p>
+                  <p>{agentDetails?.email}</p>
                 </div>
               </div>
               {/* <Separator className="md:hidden my-1.5" /> */}

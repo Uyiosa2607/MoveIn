@@ -13,6 +13,7 @@ interface CardProp {
     price: number;
     category: string;
     id: string;
+    img: string[];
   };
 }
 
@@ -32,7 +33,7 @@ export default function HomeListingCard({ listing }: CardProp) {
           width={500}
           quality={100}
           height={500}
-          src={"/banner.jpg"}
+          src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing.img[0]}`}
           className="object-fit rounded-t-2xl lg:rounded-t-3xl w-full h-[120px] lg:h-[190px]"
         />
         <div className="p-[8px] rounded-b-3xl bg-stone-100">

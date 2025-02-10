@@ -12,13 +12,14 @@ interface Listing {
   bedrooms: number;
   price: number;
   category: string;
+  location: string;
   id: string;
   img: [];
 }
 
 export default function Properties() {
   const [listings, setListings] = useState<Listing[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
 
   async function getListings() {
     try {

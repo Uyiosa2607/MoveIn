@@ -68,7 +68,7 @@ export default function SavedListing() {
                 onClick={() =>
                   deleteFromLocalStorage(listing.id, "saved_properties")
                 }
-                className="absolute text-red-500 z-[30] left-[5%] top-[4%] lg:top-[7%]"
+                className="absolute hover:text-red-600 cursor-pointer text-red-500 z-[30] left-[5%] top-[4%] lg:top-[7%]"
                 size={24}
               />
               <Link href={`listing/${listing.id}`}>
@@ -77,7 +77,7 @@ export default function SavedListing() {
                   width={500}
                   quality={100}
                   height={500}
-                  src={listing?.img}
+                  src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing.img}`}
                   className="object-fit  w-full h-[120px] lg:h-[160px]"
                 />
                 <div className="p-[8px] rounded-b-2xl bg-stone-100">
