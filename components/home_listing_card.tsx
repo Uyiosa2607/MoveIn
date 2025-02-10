@@ -7,7 +7,7 @@ import Link from "next/link";
 
 interface CardProp {
   listing: {
-    name: string;
+    title: string;
     bathrooms: number;
     bedrooms: number;
     price: number;
@@ -27,7 +27,7 @@ export default function HomeListingCard({ listing }: CardProp) {
           {listing?.cat}
         </p>
         <Image
-          alt={listing?.name}
+          alt={listing?.title}
           width={500}
           quality={100}
           height={500}
@@ -36,7 +36,7 @@ export default function HomeListingCard({ listing }: CardProp) {
         />
         <div className="p-[8px] rounded-b-3xl bg-stone-100">
           <p className="text-xs lg:text-sm w-full truncate mb-2.5 font-semibold font-[Montserrat]">
-            {listing?.name}
+            {listing?.title}
           </p>
           <div>
             <div className="flex items-center mb-2 gap-1.5 flex-row">

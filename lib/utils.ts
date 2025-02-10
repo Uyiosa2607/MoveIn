@@ -1,5 +1,16 @@
+/* eslint-disable prefer-const */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+
+interface listingProp {
+  id: string;
+  img: string;
+  price: number;
+  title: string;
+  bathrooms: number;
+  bedrooms: number;
+  cat: string;
+}
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,4 +26,28 @@ export function formatToNaira(amount: number) {
   });
 
   return formattedAmount;
+}
+
+export function saveToDatabase(listing: listingProp) {
+  let savedApartments =
+    JSON.parse(localStorage.getItem("saved_properties")!) || [];
+
+  try {
+    const newProperty = {
+      title: listing?.title,
+      id: listing?.id,
+      img: listing?.img,
+      price: listing?.price,
+      bedrooms: listing?.bedrooms,
+      bathrooms: listing?.bathrooms,
+      cat: listing?.cat,
+    };
+
+    savedApartments.push(newProperty);
+
+    localStorage.setItem("saved_properties", JSON.stringify(savedApartments));
+    console.log("saved to local storage");
+  } catch (error) {
+    console.log(error);
+  }
 }

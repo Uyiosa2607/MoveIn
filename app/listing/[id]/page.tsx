@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Image from "next/image";
@@ -12,17 +13,44 @@ import {
   Mail,
   Bookmark,
 } from "lucide-react";
-// import { useRouter } from "next/navigation";
-import { formatToNaira } from "@/lib/utils";
+import { formatToNaira, saveToDatabase } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const mockIMGS = ["/banner.jpg", "/banner.jpg", "/banner.jpg"];
+const mockIMGS = ["/banner.jpg", "/modern_house.jpg", "/banner.jpg"];
+
+const listing = {
+  title: "new apartment 6",
+  bathrooms: 2,
+  bedrooms: 2,
+  price: 2000,
+  cat: "rent",
+  id: "6T6DFGWE8DWYER89",
+  img: "/modern_house.jpg",
+};
 
 export default function Listing() {
-  //   const router = useRouter();
+  const [currentImage, setCurrentImage] = useState<number>(0);
   const bathrooms: number = 2;
   const bedrooms: number = 4;
+
+  const numberOfImages: number = mockIMGS.length - 1;
+
+  function nextIMG() {
+    if (currentImage === numberOfImages) {
+      setCurrentImage(0);
+    } else {
+      setCurrentImage(currentImage + 1);
+    }
+  }
+
+  function prevIMG() {
+    if (currentImage === 0) {
+      setCurrentImage(numberOfImages);
+    } else {
+      setCurrentImage(currentImage - 1);
+    }
+  }
 
   return (
     <div className="bg-[#ffff] text-neutral-800">
@@ -37,7 +65,7 @@ export default function Listing() {
               width={10000}
               quality={100}
               height={1000}
-              src={"/banner_2.jpg"}
+              src={mockIMGS[currentImage]}
               alt="listing image"
               className="w-full rounded-xl h-[300px] md:h-[400px] object-cover"
             />
@@ -49,14 +77,17 @@ export default function Listing() {
             <Bookmark
               className="absolute text-white top-[4%] right-[3%]"
               size={30}
+              onClick={() => saveToDatabase(listing)}
             />
 
             <div className="w-full absolute text-white left-0 z-[20] top-[50%]  flex items-center px-4 justify-between">
               <ChevronLeft
+                onClick={prevIMG}
                 size={30}
                 className="p-1 rounded-full bg-gray-400 hover:bg-gray-200"
               />
               <ChevronRight
+                onClick={nextIMG}
                 size={30}
                 className="p-1 rounded-full bg-gray-400 hover:bg-gray-200"
               />

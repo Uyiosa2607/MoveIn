@@ -3,14 +3,17 @@ import { Bath, BedDouble, ChevronRight, MapPin, Bookmark } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { formatToNaira } from "@/lib/utils";
 import Link from "next/link";
+import { saveToDatabase } from "@/lib/utils";
 
 interface CardProp {
   listing: {
-    name: string;
+    title: string;
     bathrooms: number;
     bedrooms: number;
     price: number;
     cat: string;
+    id: string;
+    img: string;
   };
 }
 
@@ -26,20 +29,21 @@ export default function ListingCard({ listing }: CardProp) {
           {listing?.cat}
         </p>
         <Image
-          alt={listing?.name}
+          alt={listing?.title}
           width={500}
           quality={100}
           height={500}
           src={"/banner.jpg"}
           className="object-fit  w-full h-[120px] lg:h-[160px]"
         />
-        <Bookmark
-          className="absolute text-white top-[4%] right-[3%]"
+        {/* <Bookmark
+          onClick={() => saveToDatabase(listing)}
+          className="absolute z-[80] text-white top-[4%] right-[3%]"
           size={25}
-        />
+        /> */}
         <div className="p-[8px] rounded-b-2xl bg-stone-100">
           <p className="text-xs lg:text-sm w-full truncate mb-1.5 lg:mb-2.5 font-semibold font-[Montserrat]">
-            {listing?.name}
+            {listing?.title}
           </p>
           <div>
             <div className="flex items-center mb-1.5 lg:mb-2 gap-1.5 flex-row">

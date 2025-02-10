@@ -11,7 +11,7 @@ export default function Header() {
   }
 
   return (
-    <div className="p-2 md:p-4 fixed bg-stone-100 mb-4 top-0 z-[100] w-full text-neutral-800">
+    <div className="p-4 fixed bg-stone-100 mb-4 top-0 z-[100] w-full text-neutral-800">
       <div className="flex items-center  justify-between flex-row">
         <Link href="/">
           <div>
@@ -35,6 +35,9 @@ export default function Header() {
 
           <Link className=" hover:text-yellow-400" href="/properties">
             <p>listings</p>
+          </Link>
+          <Link className=" hover:text-yellow-400" href="/saved-listing">
+            <p>favorites</p>
           </Link>
           <Link className=" hover:text-yellow-400" href="/abouts">
             <p>about</p>

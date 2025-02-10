@@ -1,3 +1,4 @@
+"use client";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/header";
 import HomeListingCard from "@/components/home_listing_card";
@@ -6,46 +7,58 @@ import Link from "next/link";
 
 export const mockData = [
   {
-    name: "new apartment 1",
+    title: "new apartment 1",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
     cat: "rent",
+    id: "6T6DAFGSWE8WYER89",
+    img: "/modern_house.jpg",
   },
   {
-    name: "new apartment 2",
+    title: "new apartment 2",
     bathrooms: 1,
     bedrooms: 1,
     price: 2000,
     cat: "sale",
+    id: "6T6DFGWE8WDYER89",
+    img: "/modern_house.jpg",
   },
   {
-    name: "new apartment 3",
+    title: "new apartment 3",
     bathrooms: 3,
     bedrooms: 3,
     price: 200000,
     cat: "sale",
+    id: "6T6DFGWE8WAYER89",
+    img: "/modern_house.jpg",
   },
   {
-    name: "new apartment 4",
+    title: "new apartment 4",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
     cat: "rent",
+    id: "6T6SDFGWE8WYER89",
+    img: "/modern_house.jpg",
   },
   {
-    name: "new apartment 5",
+    title: "new apartment 5",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
     cat: "rent",
+    id: "6T6DSFGWE8WYER89",
+    img: "/modern_house.jpg",
   },
   {
-    name: "new apartment 6",
+    title: "new apartment 6",
     bathrooms: 2,
     bedrooms: 2,
     price: 2000,
     cat: "rent",
+    id: "6T6DFGWE8DWYER89",
+    img: "/modern_house.jpg",
   },
 ];
 
@@ -94,7 +107,7 @@ export default function Home() {
         {/* listing container */}
         <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-4 gap-3">
           {mockData.map((listing) => (
-            <HomeListingCard listing={listing} key={listing.name} />
+            <HomeListingCard listing={listing} key={listing.title} />
           ))}
         </div>
         {/* listing container ends here */}
