@@ -83,8 +83,6 @@ export default function ListingDetails() {
     getListings();
   }, []);
 
-  // const numberOfImages: number = listing!.img.length - 1;
-
   function nextIMG() {
     if (currentImage === listing!.img.length - 1) {
       setCurrentImage(0);
