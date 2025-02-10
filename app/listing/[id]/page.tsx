@@ -19,8 +19,6 @@ import { formatToNaira, saveToDatabase } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const mockIMGS = ["/banner.jpg", "/modern_house.jpg", "/banner.jpg"];
-
 interface Listing {
   title: string;
   bathrooms: number;
@@ -38,6 +36,7 @@ interface agentINFO {
   name: string;
   email: string;
   phone: string;
+  img: string;
 }
 
 export default function ListingDetails() {
@@ -84,10 +83,10 @@ export default function ListingDetails() {
     getListings();
   }, []);
 
-  const numberOfImages: number = mockIMGS.length - 1;
+  // const numberOfImages: number = listing!.img.length - 1;
 
   function nextIMG() {
-    if (currentImage === numberOfImages) {
+    if (currentImage === listing!.img.length - 1) {
       setCurrentImage(0);
     } else {
       setCurrentImage(currentImage + 1);
@@ -96,7 +95,7 @@ export default function ListingDetails() {
 
   function prevIMG() {
     if (currentImage === 0) {
-      setCurrentImage(numberOfImages);
+      setCurrentImage(listing!.img.length - 1);
     } else {
       setCurrentImage(currentImage - 1);
     }
@@ -163,7 +162,7 @@ export default function ListingDetails() {
                 height={200}
                 src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${image}`}
                 quality={100}
-                className="h-[100px] rounded-md object-cover w-full"
+                className="h-[80px] md:h-[100px] rounded-md object-cover w-full"
               />
             ))}
           </div>
@@ -211,7 +210,9 @@ export default function ListingDetails() {
             <div className="flex-[1] flex flex-col justify-end">
               <div className="flex w-full pl-1 md:pl-[5%] gap-1 items-center">
                 <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarImage
+                    src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${agentDetails?.img}`}
+                  />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className="text-sm">
@@ -221,14 +222,18 @@ export default function ListingDetails() {
               </div>
               {/* <Separator className="md:hidden my-1.5" /> */}
               <div className="flex mt-4 w-full  flex-col gap-4">
-                <div className="flex px-4 place-content-center text-white gap-1 py-1.5 rounded-xl text-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer flex-row items-center w-[95%] md:w-[90%] mx-auto">
-                  <Phone size={14} />
-                  <p className="text-sm font-medium">Call agent</p>
-                </div>
-                <div className="flex px-4 place-content-center  text-white gap-1 py-1.5 rounded-xl hover:bg-green-500 text-center bg-green-700 flex-row cursor-pointer  w-[95%] md:w-[90%] mx-auto items-center">
-                  <Mail size={14} />
-                  <p className="text-sm font-medium">Whatsapp</p>
-                </div>
+                <a href={`tel:${agentDetails?.phone}`}>
+                  <div className="flex px-4 place-content-center text-white gap-1 py-1.5 rounded-xl text-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer flex-row items-center w-[95%] md:w-[90%] mx-auto">
+                    <Phone size={14} />
+                    <p className="text-sm font-medium">Call agent</p>
+                  </div>
+                </a>
+                <a href={`https://wa.me/${agentDetails?.phone}`}>
+                  <div className="flex px-4 place-content-center  text-white gap-1 py-1.5 rounded-xl hover:bg-green-500 text-center bg-green-700 flex-row cursor-pointer  w-[95%] md:w-[90%] mx-auto items-center">
+                    <Mail size={14} />
+                    <p className="text-sm font-medium">Whatsapp</p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
