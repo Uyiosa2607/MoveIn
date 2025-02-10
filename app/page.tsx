@@ -14,11 +14,12 @@ interface Listing {
   price: number;
   category: string;
   id: string;
+  img: string[];
 }
 
 export default function Home() {
   const [featuredListings, setFeaturedListings] = useState<Listing[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
 
   async function getListings() {
     try {
