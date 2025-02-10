@@ -1,11 +1,38 @@
 "use client";
+import { useState, useEffect } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ChevronRight } from "lucide-react";
 import ListingCard from "@/components/listing_card";
-import { mockData } from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
+
+interface Listing {
+  title: string;
+  bathrooms: number;
+  bedrooms: number;
+  price: number;
+  category: string;
+  id: string;
+  img: [];
+}
 
 export default function Properties() {
+  const [listings, setListings] = useState<Listing[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  async function getListings() {
+    try {
+      const { data, error } = await supabase.from("listings").select();
+      if (!error) return setListings(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getListings();
+  }, []);
+
   return (
     <div className="bg-[#ffff]">
       <Header />
@@ -23,7 +50,7 @@ export default function Properties() {
           <ChevronRight size={15} />
         </div>
         <div className="px-2 gap-y-6 gap-x-2.5 lg:gap-x-4 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {mockData.map((listing) => (
+          {listings.map((listing) => (
             <ListingCard key={listing.id} listing={listing} />
           ))}
         </div>

@@ -1,12 +1,38 @@
 "use client";
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/header";
 import HomeListingCard from "@/components/home_listing_card";
 import Footer from "@/components/footer";
 import Link from "next/link";
-import { mockData } from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
+
+interface Listing {
+  title: string;
+  bedrooms: number;
+  bathrooms: number;
+  price: number;
+  category: string;
+  id: string;
+}
 
 export default function Home() {
+  const [featuredListings, setFeaturedListings] = useState<Listing[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  async function getListings() {
+    try {
+      const { data, error } = await supabase.from("listings").select();
+      if (!error) return setFeaturedListings(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getListings();
+  }, []);
+
   return (
     <div className="bg-[#fff]">
       <Header />
@@ -50,7 +76,7 @@ export default function Home() {
 
         {/* listing container */}
         <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-4 gap-3">
-          {mockData.map((listing) => (
+          {featuredListings.map((listing) => (
             <HomeListingCard listing={listing} key={listing.title} />
           ))}
         </div>

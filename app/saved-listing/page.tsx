@@ -11,7 +11,6 @@ import Image from "next/image";
 
 interface savedItemProp {
   title: string;
-  cat: string;
   id: string;
   bedrooms: number;
   bathrooms: number;
@@ -51,15 +50,8 @@ export default function SavedListing() {
         </div>
         <div className="px-2 gap-y-6 gap-x-2.5 lg:gap-x-4 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {savedItems.map((listing) => (
-            <Link key={listing?.id} href={"/listing/36"}>
+            <Link key={listing?.id} href={`listing/${listing.id}`}>
               <div className="w-full relative">
-                <p
-                  className={`w-fit px-1 py-0.5 font-semibold font-[Montserrat]  absolute left-[5%] top-[4%] lg:top-[7%] text-xs    text-neutral-800 ${
-                    listing?.cat === "rent" ? "bg-yellow-400" : "bg-green-400"
-                  } `}
-                >
-                  {listing?.cat}
-                </p>
                 <Image
                   alt={listing?.title}
                   width={500}

@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+import { useParams } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Image from "next/image";
@@ -19,20 +21,44 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const mockIMGS = ["/banner.jpg", "/modern_house.jpg", "/banner.jpg"];
 
-const listing = {
-  title: "new apartment 6",
-  bathrooms: 2,
-  bedrooms: 2,
-  price: 2000,
-  cat: "rent",
-  id: "6T6DFGWE8DWYER89",
-  img: "/modern_house.jpg",
-};
+interface Listing {
+  title: string;
+  bathrooms: number;
+  bedrooms: number;
+  price: number;
+  category: string;
+  id: string;
+  img: string[];
+  description: string;
+  location: string;
+}
 
-export default function Listing() {
+export default function ListingDetails() {
   const [currentImage, setCurrentImage] = useState<number>(0);
-  const bathrooms: number = 2;
-  const bedrooms: number = 4;
+  const [listing, setListing] = useState<Listing | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const params = useParams();
+
+  async function getListings() {
+    try {
+      const { data, error } = await supabase
+        .from("listings")
+        .select()
+        .eq("id", params.id)
+        .single();
+      if (!error) {
+        setListing(data);
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getListings();
+  }, []);
 
   const numberOfImages: number = mockIMGS.length - 1;
 
@@ -57,7 +83,7 @@ export default function Listing() {
       <Header />
       <div className="container mt-16 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
         <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
-          Property name
+          {listing?.title}
         </p>
         <div className="flex w-full flex-col md:flex-row gap-4">
           <div className="flex-[1.4] relative w-full">
@@ -71,14 +97,25 @@ export default function Listing() {
             />
 
             <p className="px-1 py-0.5 w-fit absolute left-[4%]  top-[4%] bg-yellow-400 font-semibold text-xs ">
-              {"rent"}
+              {listing?.category}
             </p>
 
-            <Bookmark
-              className="absolute text-white top-[4%] right-[3%]"
-              size={30}
-              onClick={() => saveToDatabase(listing)}
-            />
+            {listing && (
+              <Bookmark
+                className="absolute text-white top-[4%] right-[3%]"
+                size={30}
+                onClick={() =>
+                  saveToDatabase({
+                    title: listing.title,
+                    price: listing.price,
+                    bathrooms: listing.bathrooms,
+                    bedrooms: listing.bedrooms,
+                    img: "/modern_house.jpg",
+                    id: listing.id,
+                  })
+                }
+              />
+            )}
 
             <div className="w-full absolute text-white left-0 z-[20] top-[50%]  flex items-center px-4 justify-between">
               <ChevronLeft
@@ -110,30 +147,32 @@ export default function Listing() {
         <div>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-[1.2]">
-              <p className="text-2xl font-bold my-1.5">
-                {formatToNaira(600000)}
-              </p>
+              {listing && (
+                <p className="text-2xl font-bold my-1.5">
+                  {formatToNaira(listing.price)}
+                </p>
+              )}
               <div className="flex mb-1.5 items-center gap-1">
                 <MapPin size={16} />
                 <p className="text-base leading-tight mb-1.5 font-medium">
-                  Somewhere in africa
+                  {listing?.location}
                 </p>
               </div>
               <div className="flex items-center flex-row gap-10">
                 <div className="flex items-center gap-1 flex-row ">
                   <BedDouble size={14} />
-                  {bedrooms === 1 ? (
-                    <p className="text-xs md:text-sm font-medium">{`${bedrooms} Bedroom`}</p>
+                  {listing?.bedrooms === 1 ? (
+                    <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedroom`}</p>
                   ) : (
-                    <p className="text-xs md:text-sm font-medium">{`${bedrooms} Bedrooms`}</p>
+                    <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedrooms`}</p>
                   )}
                 </div>
                 <div className="flex items-center gap-1 flex-row">
                   <Bath size={14} />
-                  {bathrooms === 1 ? (
-                    <p className="text-xs md:text-sm font-medium">{`${bathrooms} Bathroom`}</p>
+                  {listing?.bathrooms === 1 ? (
+                    <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathroom`}</p>
                   ) : (
-                    <p className="text-xs md:text-sm font-medium">{`${bathrooms} Bathrooms`}</p>
+                    <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
                   )}
                 </div>
               </div>
@@ -142,12 +181,7 @@ export default function Listing() {
                 <p className="text-md mb-1.5 font-semibold">
                   Property Information
                 </p>
-                <p className="font-normal text-sm">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Distinctio sapiente pariatur unde odio rem animi mollitia,
-                  dolore nostrum reprehenderit, nam eveniet ipsa hic, tempore
-                  qui soluta. Exercitationem possimus commodi et?
-                </p>
+                <p className="font-normal text-sm">{listing?.description}</p>
               </div>
             </div>
             <div className="flex-[1] flex flex-col justify-end">

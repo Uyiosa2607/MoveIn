@@ -11,20 +11,21 @@ interface CardProp {
     bathrooms: number;
     bedrooms: number;
     price: number;
-    cat: string;
+    category: string;
+    id: string;
   };
 }
 
 export default function HomeListingCard({ listing }: CardProp) {
   return (
-    <Link href={"/listing/44"}>
+    <Link href={`listing/${listing.id}`}>
       <div className="w-full relative">
         <p
           className={`w-fit px-1 py-0.5 font-semibold font-[Montserrat] absolute left-[5%] top-[4%] lg:top-[7%] text-xs    text-neutral-800 ${
-            listing?.cat === "rent" ? "bg-yellow-400" : "bg-green-400"
+            listing?.category === "rent" ? "bg-yellow-400" : "bg-green-400"
           } `}
         >
-          {listing?.cat}
+          {listing?.category}
         </p>
         <Image
           alt={listing?.title}
