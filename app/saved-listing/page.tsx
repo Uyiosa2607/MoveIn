@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { formatToNaira } from "@/lib/utils";
 import { BedDouble, Bath, MapPin } from "lucide-react";
@@ -21,10 +21,23 @@ interface savedItemProp {
 export default function SavedListing() {
   const [savedItems, setSavedItems] = useState<savedItemProp[]>([]);
 
-  useEffect(() => {
+  function getItems() {
     const savedHouses = JSON.parse(localStorage.getItem("saved_properties")!);
     if (savedHouses) return setSavedItems(savedHouses);
+  }
+
+  useEffect(() => {
+    getItems();
   }, []);
+
+  function deleteFromLocalStorage(id: string, key: string) {
+    const items = JSON.parse(localStorage.getItem(key)!) || [];
+
+    const updatedItems = items.filter((item: { id: string }) => item.id !== id);
+
+    localStorage.setItem(key, JSON.stringify(updatedItems));
+    getItems();
+  }
 
   if (!savedItems)
     return (
@@ -50,8 +63,15 @@ export default function SavedListing() {
         </div>
         <div className="px-2 gap-y-6 gap-x-2.5 lg:gap-x-4 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {savedItems.map((listing) => (
-            <Link key={listing?.id} href={`listing/${listing.id}`}>
-              <div className="w-full relative">
+            <div key={listing.id} className="w-full relative">
+              <Trash2
+                onClick={() =>
+                  deleteFromLocalStorage(listing.id, "saved_properties")
+                }
+                className="absolute text-red-500 z-[30] left-[5%] top-[4%] lg:top-[7%]"
+                size={24}
+              />
+              <Link href={`listing/${listing.id}`}>
                 <Image
                   alt={listing?.title}
                   width={500}
@@ -101,8 +121,8 @@ export default function SavedListing() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
       </div>

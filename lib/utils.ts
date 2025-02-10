@@ -44,7 +44,7 @@ export function saveToDatabase(listing: listingProp | null) {
     savedApartments.push(newProperty);
 
     localStorage.setItem("saved_properties", JSON.stringify(savedApartments));
-    console.log("saved to local storage");
+    alert("Saved to favorites");
   } catch (error) {
     console.log(error);
   }
