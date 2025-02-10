@@ -3,7 +3,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ChevronRight } from "lucide-react";
 import ListingCard from "@/components/listing_card";
-import { mockData } from "../page";
+import { mockData } from "@/lib/utils";
 
 export default function Properties() {
   return (

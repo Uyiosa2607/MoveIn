@@ -4,63 +4,7 @@ import Header from "@/components/header";
 import HomeListingCard from "@/components/home_listing_card";
 import Footer from "@/components/footer";
 import Link from "next/link";
-
-export const mockData = [
-  {
-    title: "new apartment 1",
-    bathrooms: 2,
-    bedrooms: 2,
-    price: 2000,
-    cat: "rent",
-    id: "6T6DAFGSWE8WYER89",
-    img: "/modern_house.jpg",
-  },
-  {
-    title: "new apartment 2",
-    bathrooms: 1,
-    bedrooms: 1,
-    price: 2000,
-    cat: "sale",
-    id: "6T6DFGWE8WDYER89",
-    img: "/modern_house.jpg",
-  },
-  {
-    title: "new apartment 3",
-    bathrooms: 3,
-    bedrooms: 3,
-    price: 200000,
-    cat: "sale",
-    id: "6T6DFGWE8WAYER89",
-    img: "/modern_house.jpg",
-  },
-  {
-    title: "new apartment 4",
-    bathrooms: 2,
-    bedrooms: 2,
-    price: 2000,
-    cat: "rent",
-    id: "6T6SDFGWE8WYER89",
-    img: "/modern_house.jpg",
-  },
-  {
-    title: "new apartment 5",
-    bathrooms: 2,
-    bedrooms: 2,
-    price: 2000,
-    cat: "rent",
-    id: "6T6DSFGWE8WYER89",
-    img: "/modern_house.jpg",
-  },
-  {
-    title: "new apartment 6",
-    bathrooms: 2,
-    bedrooms: 2,
-    price: 2000,
-    cat: "rent",
-    id: "6T6DFGWE8DWYER89",
-    img: "/modern_house.jpg",
-  },
-];
+import { mockData } from "@/lib/utils";
 
 export default function Home() {
   return (
