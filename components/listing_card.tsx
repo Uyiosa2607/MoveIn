@@ -1,9 +1,8 @@
 import Image from "next/image";
-import { Bath, BedDouble, ChevronRight, MapPin, Bookmark } from "lucide-react";
+import { Bath, BedDouble, ChevronRight, MapPin } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { formatToNaira } from "@/lib/utils";
 import Link from "next/link";
-import { saveToDatabase } from "@/lib/utils";
 
 interface CardProp {
   listing: {

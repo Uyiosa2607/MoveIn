@@ -50,7 +50,7 @@ export default function SavedListing() {
           <ChevronRight size={15} />
         </div>
         <div className="px-2 gap-y-6 gap-x-2.5 lg:gap-x-4 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {savedItems.map((listing: savedItemProp) => (
+          {savedItems.map((listing) => (
             <Link key={listing?.id} href={"/listing/36"}>
               <div className="w-full relative">
                 <p
