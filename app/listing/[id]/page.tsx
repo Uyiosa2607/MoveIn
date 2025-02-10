@@ -161,7 +161,7 @@ export default function Listing() {
                   <p>email</p>
                 </div>
               </div>
-              <Separator className="md:hidden my-1.5" />
+              {/* <Separator className="md:hidden my-1.5" /> */}
               <div className="flex mt-4 w-full  flex-col gap-4">
                 <div className="flex px-4 place-content-center text-white gap-1 py-1.5 rounded-xl text-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer flex-row items-center w-[95%] md:w-[90%] mx-auto">
                   <Phone size={14} />

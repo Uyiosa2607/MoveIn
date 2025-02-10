@@ -15,12 +15,6 @@ export default function Properties() {
           <p className="w-fit p-1 lg:p-1.5 rounded-2xl border border-neutral-700 px-6 lg:px-6">
             filter
           </p>
-          <p className="w-fit p-1 lg:p-1.5  rounded-2xl border border-neutral-700 px-6 lg:px-6">
-            price
-          </p>
-          <p className="w-fit p-1 lg:p-1.5 rounded-2xl border border-neutral-700 px-6 lg:px-6">
-            sort
-          </p>
         </div>
         <div className="flex items-center mt-3 lg:mt-5 flex-row">
           <p className="font-medium text-base lg:text-lg pl-2">
