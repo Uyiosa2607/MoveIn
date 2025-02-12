@@ -43,7 +43,6 @@ export default function ListingDetails() {
   const [currentImage, setCurrentImage] = useState<number>(0);
   const [listing, setListing] = useState<Listing | null>(null);
   const [agentDetails, setAgentDetails] = useState<agentINFO | null>(null);
-  // const [loading, setLoading] = useState<boolean>(false);
 
   const params = useParams();
 

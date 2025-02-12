@@ -84,7 +84,7 @@ export default function Home() {
         {/* listing container ends here */}
 
         {/* why choose  us section */}
-        <div className="hidden rounded-2xl lg:block bg-[url('/modern_house.jpg')] relative bg-center text-white bg-cover h-[300px] lg:h-[420px] mt-10 w-full">
+        <div className="hidden rounded-2xl bg-[url('/modern_house.jpg')] relative bg-center text-white bg-cover h-[300px] lg:h-[420px] mt-10 w-full">
           <div className="h-fit bg-stone-100 rounded-2xl lg:right-[5%]  lg:top-[10%] absolute text-[#0b1d27] w-[320px] lg:w-[400px]  pl-3 lg:pl-7 pb-4 pt-2">
             <h4 className="font-medium w-fit text-base mb-1 lg:mb-1.5 text-yellow-400">
               features
