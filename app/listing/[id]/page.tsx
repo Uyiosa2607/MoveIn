@@ -106,17 +106,10 @@ export default function ListingDetails() {
     <div className="bg-[#ffff] text-neutral-800">
       <Header />
       <div className="container mt-16 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
-        {loading ? (
-          <>
-            <Skeleton className="w-[85%] h-5 mb-3" />
-          </>
-        ) : (
-          <>
-            {" "}
-            <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
-              {listing?.title}
-            </p>
-          </>
+        {loading ? null : (
+          <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
+            {listing?.title}
+          </p>
         )}
         <div className="flex  w-full flex-col md:flex-row gap-4">
           <div className="flex-[1.4] relative w-full">
@@ -200,7 +193,7 @@ export default function ListingDetails() {
             <div className="flex-[1.2]">
               {loading ? (
                 <>
-                  <Skeleton className="h-8 mb-3 w-[95%]" />
+                  <Skeleton className="h-8 mt-3 mb-3 w-[95%]" />
                   <Skeleton className="h-6 mb-2 w-[90%]" />
                   <Skeleton className="h-6 mb-2 w-[80%]" />
                   <div>
