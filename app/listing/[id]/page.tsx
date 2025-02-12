@@ -18,6 +18,7 @@ import {
 import { formatToNaira, saveToDatabase } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Listing {
   title: string;
@@ -43,6 +44,9 @@ export default function ListingDetails() {
   const [currentImage, setCurrentImage] = useState<number>(0);
   const [listing, setListing] = useState<Listing | null>(null);
   const [agentDetails, setAgentDetails] = useState<agentINFO | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const length: number = 4;
 
   const params = useParams();
 
@@ -55,6 +59,7 @@ export default function ListingDetails() {
         .single();
       if (!error) {
         setListing(data);
+        setLoading(false);
         getAgentInfo(data.author_id);
       }
     } catch (error) {
@@ -71,7 +76,6 @@ export default function ListingDetails() {
         .single();
       if (!error) {
         setAgentDetails(data);
-        console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -102,136 +106,191 @@ export default function ListingDetails() {
     <div className="bg-[#ffff] text-neutral-800">
       <Header />
       <div className="container mt-16 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
-        <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
-          {listing?.title}
-        </p>
+        {loading ? (
+          <>
+            <Skeleton className="w-[85%] h-5 mb-3" />
+          </>
+        ) : (
+          <>
+            {" "}
+            <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
+              {listing?.title}
+            </p>
+          </>
+        )}
         <div className="flex  w-full flex-col md:flex-row gap-4">
           <div className="flex-[1.4] relative w-full">
-            <Image
-              width={10000}
-              quality={100}
-              height={1000}
-              src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing?.img[currentImage]}`}
-              alt={"property_image"}
-              className="w-full rounded-xl h-[300px] md:h-[400px] object-cover"
-            />
-
-            <p className="px-1 py-0.5 w-fit absolute left-[4%]  top-[4%] bg-yellow-400 font-semibold text-xs ">
-              {listing?.category}
-            </p>
-
-            {listing && (
-              <Bookmark
-                className="absolute text-white top-[4%] right-[3%]"
-                size={30}
-                onClick={() =>
-                  saveToDatabase({
-                    title: listing.title,
-                    price: listing.price,
-                    bathrooms: listing.bathrooms,
-                    bedrooms: listing.bedrooms,
-                    img: listing.img[0],
-                    id: listing.id,
-                  })
-                }
-              />
+            {loading ? (
+              <>
+                <Skeleton className="w-full rounded-xl h-[300px] md:h-[400px] object-cover" />
+              </>
+            ) : (
+              <>
+                {" "}
+                <Image
+                  width={10000}
+                  quality={100}
+                  height={1000}
+                  src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing?.img[currentImage]}`}
+                  alt={"property_image"}
+                  className="w-full rounded-xl h-[300px] md:h-[400px] object-cover"
+                />
+                <p className="px-1 py-0.5 w-fit absolute left-[4%]  top-[4%] bg-yellow-400 font-semibold text-xs ">
+                  {listing?.category}
+                </p>
+                {listing && (
+                  <Bookmark
+                    className="absolute text-white top-[4%] right-[3%]"
+                    size={30}
+                    onClick={() =>
+                      saveToDatabase({
+                        title: listing.title,
+                        price: listing.price,
+                        bathrooms: listing.bathrooms,
+                        bedrooms: listing.bedrooms,
+                        img: listing.img[0],
+                        id: listing.id,
+                      })
+                    }
+                  />
+                )}
+                <div className="w-full absolute text-white left-0 z-[20] top-[50%]  flex items-center px-4 justify-between">
+                  <ChevronLeft
+                    onClick={prevIMG}
+                    size={30}
+                    className="p-1 rounded-full bg-gray-400 hover:bg-gray-200"
+                  />
+                  <ChevronRight
+                    onClick={nextIMG}
+                    size={30}
+                    className="p-1 rounded-full bg-gray-400 hover:bg-gray-200"
+                  />
+                </div>
+              </>
             )}
-
-            <div className="w-full absolute text-white left-0 z-[20] top-[50%]  flex items-center px-4 justify-between">
-              <ChevronLeft
-                onClick={prevIMG}
-                size={30}
-                className="p-1 rounded-full bg-gray-400 hover:bg-gray-200"
-              />
-              <ChevronRight
-                onClick={nextIMG}
-                size={30}
-                className="p-1 rounded-full bg-gray-400 hover:bg-gray-200"
-              />
-            </div>
           </div>
           <div className="flex-[1.2] grid gap-2 grid-cols-4">
-            {listing?.img.map((image, index) => (
-              <Image
-                key={index}
-                alt="alt"
-                width={200}
-                height={200}
-                src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${image}`}
-                quality={100}
-                className="h-[80px] md:h-[100px] rounded-md object-cover w-full"
-              />
-            ))}
+            {loading ? (
+              <>
+                {Array.from({ length }).map((_, index) => (
+                  <div key={index}>
+                    <Skeleton className="h-[80px] md:h-[100px] rounded-md object-cover w-full" />
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                {listing?.img.map((image, index) => (
+                  <Image
+                    key={index}
+                    alt="alt"
+                    width={200}
+                    height={200}
+                    src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${image}`}
+                    quality={100}
+                    className="h-[80px] md:h-[100px] rounded-md object-cover w-full"
+                  />
+                ))}
+              </>
+            )}
           </div>
         </div>
         <div>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-[1.2]">
-              {listing && (
-                <p className="text-2xl font-bold my-1.5">
-                  {formatToNaira(listing.price)}
-                </p>
+              {loading ? (
+                <>
+                  <Skeleton className="h-8 mb-3 w-[95%]" />
+                  <Skeleton className="h-6 mb-2 w-[90%]" />
+                  <Skeleton className="h-6 mb-2 w-[80%]" />
+                  <div>
+                    <Skeleton className="h-14 w-full mb-2 font-semibold" />
+                    <Skeleton className="h-20 my-5 w-full" />
+                    {/* {listing?.description}
+                    </Skeleton> */}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {listing && (
+                    <p className="text-2xl font-bold my-1.5">
+                      {formatToNaira(listing.price)}
+                    </p>
+                  )}
+                  <div className="flex mb-1.5 items-center gap-1">
+                    <MapPin size={16} />
+                    <p className="text-base leading-tight mb-1.5 font-medium">
+                      {listing?.location}
+                    </p>
+                  </div>
+                  <div className="flex items-center flex-row gap-10">
+                    <div className="flex items-center gap-1 flex-row ">
+                      <BedDouble size={14} />
+                      {listing?.bedrooms === 1 ? (
+                        <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedroom`}</p>
+                      ) : (
+                        <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedrooms`}</p>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1 flex-row">
+                      <Bath size={14} />
+                      {listing?.bathrooms === 1 ? (
+                        <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathroom`}</p>
+                      ) : (
+                        <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
+                      )}
+                    </div>
+                  </div>
+                  <Separator className="my-1.5 md:my-4" />
+                  <div>
+                    <p className="text-md mb-1.5 font-semibold">
+                      Property Information
+                    </p>
+                    <p className="font-normal text-sm">
+                      {listing?.description}
+                    </p>
+                  </div>
+                </>
               )}
-              <div className="flex mb-1.5 items-center gap-1">
-                <MapPin size={16} />
-                <p className="text-base leading-tight mb-1.5 font-medium">
-                  {listing?.location}
-                </p>
-              </div>
-              <div className="flex items-center flex-row gap-10">
-                <div className="flex items-center gap-1 flex-row ">
-                  <BedDouble size={14} />
-                  {listing?.bedrooms === 1 ? (
-                    <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedroom`}</p>
-                  ) : (
-                    <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedrooms`}</p>
-                  )}
-                </div>
-                <div className="flex items-center gap-1 flex-row">
-                  <Bath size={14} />
-                  {listing?.bathrooms === 1 ? (
-                    <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathroom`}</p>
-                  ) : (
-                    <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
-                  )}
-                </div>
-              </div>
-              <Separator className="my-1.5 md:my-4" />
-              <div>
-                <p className="text-md mb-1.5 font-semibold">
-                  Property Information
-                </p>
-                <p className="font-normal text-sm">{listing?.description}</p>
-              </div>
             </div>
             <div className="flex-[1] flex flex-col justify-end">
-              <div className="flex w-full pl-1 md:pl-[5%] gap-1 items-center">
-                <Avatar>
-                  <AvatarImage
-                    src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${agentDetails?.img}`}
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <div className="text-sm">
-                  <p className="font-medium capitalize">{agentDetails?.name}</p>
-                  <p>{agentDetails?.email}</p>
-                </div>
-              </div>
-              {/* <Separator className="md:hidden my-1.5" /> */}
-              <div className="flex mt-4 w-full  flex-col gap-4">
-                <a href={`tel:${agentDetails?.phone}`}>
-                  <div className="flex px-4 place-content-center text-white gap-1 py-1.5 rounded-xl text-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer flex-row items-center w-[95%] md:w-[90%] mx-auto">
-                    <Phone size={14} />
-                    <p className="text-sm font-medium">Call agent</p>
+              {loading ? (
+                <>
+                  <Skeleton className="h-40 w-[95%] mx-auto" />
+                </>
+              ) : (
+                <>
+                  <div className="flex w-full pl-1 md:pl-[5%] gap-1 items-center">
+                    <Avatar>
+                      <AvatarImage
+                        src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${agentDetails?.img}`}
+                      />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <div className="text-sm">
+                      <p className="font-medium capitalize">
+                        {agentDetails?.name}
+                      </p>
+                      <p>{agentDetails?.email}</p>
+                    </div>
                   </div>
-                </a>
-                <a href={`https://wa.me/${agentDetails?.phone}`}>
-                  <div className="flex px-4 place-content-center  text-white gap-1 py-1.5 rounded-xl hover:bg-green-500 text-center bg-green-700 flex-row cursor-pointer  w-[95%] md:w-[90%] mx-auto items-center">
-                    <Mail size={14} />
-                    <p className="text-sm font-medium">Whatsapp</p>
+                  {/* <Separator className="md:hidden my-1.5" /> */}
+                  <div className="flex mt-4 w-full  flex-col gap-4">
+                    <a href={`tel:${agentDetails?.phone}`}>
+                      <div className="flex px-4 place-content-center text-white gap-1 py-1.5 rounded-xl text-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer flex-row items-center w-[95%] md:w-[90%] mx-auto">
+                        <Phone size={14} />
+                        <p className="text-sm font-medium">Call agent</p>
+                      </div>
+                    </a>
+                    <a href={`https://wa.me/${agentDetails?.phone}`}>
+                      <div className="flex px-4 place-content-center  text-white gap-1 py-1.5 rounded-xl hover:bg-green-500 text-center bg-green-700 flex-row cursor-pointer  w-[95%] md:w-[90%] mx-auto items-center">
+                        <Mail size={14} />
+                        <p className="text-sm font-medium">Whatsapp</p>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
+                </>
+              )}
             </div>
           </div>
         </div>
