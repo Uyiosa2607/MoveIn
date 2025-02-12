@@ -41,6 +41,12 @@ export function saveToDatabase(listing: listingProp | null) {
       bathrooms: listing?.bathrooms,
     };
 
+    const alreadyExists = savedApartments.some(
+      (obj: { id: string | undefined }) => obj.id === newProperty.id
+    );
+
+    if (alreadyExists) return alert("Property already saved");
+
     savedApartments.push(newProperty);
 
     localStorage.setItem("saved_properties", JSON.stringify(savedApartments));

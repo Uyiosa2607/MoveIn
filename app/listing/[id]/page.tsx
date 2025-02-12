@@ -106,7 +106,7 @@ export default function ListingDetails() {
         <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
           {listing?.title}
         </p>
-        <div className="flex w-full flex-col md:flex-row gap-4">
+        <div className="flex  w-full flex-col md:flex-row gap-4">
           <div className="flex-[1.4] relative w-full">
             <Image
               width={10000}
