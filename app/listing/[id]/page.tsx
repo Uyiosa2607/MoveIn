@@ -105,7 +105,7 @@ export default function ListingDetails() {
   return (
     <div className="bg-[#ffff] text-[#1B1D29]">
       <Header />
-      <div className="container mt-16 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
+      <div className="container mt-20 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
         <div className="flex  w-full flex-col md:flex-row gap-4">
           <div className="flex-[1.4] relative w-full">
             {loading ? (
