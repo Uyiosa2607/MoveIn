@@ -22,7 +22,7 @@ export default function ListingCard({ listing }: CardProp) {
     <Link href={`listing/${listing.id}`}>
       <div className="w-full relative">
         <p
-          className={`w-fit px-1 py-0.5 font-semibold font-[Montserrat]  absolute left-[5%] top-[4%] lg:top-[7%] text-xs    text-neutral-800 ${
+          className={`w-fit px-1.5 py-0.5 rounded-lg font-semibold font-[Montserrat]  absolute left-[5%] top-[4%] lg:top-[7%] text-xs    text-neutral-800 ${
             listing?.category === "rent" ? "bg-yellow-400" : "bg-green-400"
           } `}
         >

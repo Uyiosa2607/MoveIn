@@ -103,14 +103,9 @@ export default function ListingDetails() {
   }
 
   return (
-    <div className="bg-[#ffff] text-neutral-800">
+    <div className="bg-[#ffff] text-[#1B1D29]">
       <Header />
       <div className="container mt-16 md:mt-20 w-full px-2 lg:w-[70%] mx-auto">
-        {loading ? null : (
-          <p className="my-1.5 md:my-4 w-full truncate mb-2 text-md font-semibold">
-            {listing?.title}
-          </p>
-        )}
         <div className="flex  w-full flex-col md:flex-row gap-4">
           <div className="flex-[1.4] relative w-full">
             {loading ? (
@@ -128,7 +123,7 @@ export default function ListingDetails() {
                   alt={"property_image"}
                   className="w-full rounded-xl h-[300px] md:h-[400px] object-cover"
                 />
-                <p className="px-1 py-0.5 w-fit absolute left-[4%]  top-[4%] bg-yellow-400 font-semibold text-xs ">
+                <p className="px-1.5 py-0.5 w-fit rounded-lg absolute left-[4%] top-[4%] bg-yellow-400 font-semibold text-xs">
                   {listing?.category}
                 </p>
                 {listing && (
@@ -205,14 +200,19 @@ export default function ListingDetails() {
                 </>
               ) : (
                 <>
+                  {loading ? null : (
+                    <p className="my-1.5 md:my-4 w-full truncate mb-1 text-xl font-[800] capitalize">
+                      {listing?.title}
+                    </p>
+                  )}
                   {listing && (
-                    <p className="text-2xl font-bold my-1.5">
+                    <p className="text-lg text-green-700 font-bold my-1.5">
                       {formatToNaira(listing.price)}
                     </p>
                   )}
                   <div className="flex mb-1.5 items-center gap-1">
                     <MapPin size={16} />
-                    <p className="text-base leading-tight mb-1.5 font-medium">
+                    <p className="text-base mt-1 leading-tight mb-1.5 font-medium">
                       {listing?.location}
                     </p>
                   </div>
@@ -236,7 +236,7 @@ export default function ListingDetails() {
                   </div>
                   <Separator className="my-1.5 md:my-4" />
                   <div>
-                    <p className="text-md mb-1.5 font-semibold">
+                    <p className="text-base mb-1.5 font-[700]">
                       Property Information
                     </p>
                     <p className="font-normal text-sm">
