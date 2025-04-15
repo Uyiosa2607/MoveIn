@@ -206,7 +206,7 @@ export default function ListingDetails() {
                     </p>
                   )}
                   {listing && (
-                    <p className="text-lg text-green-700 font-bold my-1.5">
+                    <p className="text-lg text-green-700 font-bold my-1 lg:my-1.5">
                       {formatToNaira(listing.price)}
                     </p>
                   )}
