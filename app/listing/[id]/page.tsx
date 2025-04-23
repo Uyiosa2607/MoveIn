@@ -201,45 +201,45 @@ export default function ListingDetails() {
               ) : (
                 <>
                   {loading ? null : (
-                    <p className="my-1.5 md:my-4 w-full truncate mb-1 text-xl font-[800] capitalize">
+                    <p className="my-1.5 w-full truncate mb-1 text-xl  font-[800] capitalize">
                       {listing?.title}
                     </p>
                   )}
                   {listing && (
-                    <p className="text-lg text-green-700 font-bold my-1 lg:my-1.5">
+                    <p className="text-lg text-green-700 font-bold my-1 md:text-2xl lg:my-1.5">
                       {formatToNaira(listing.price)}
                     </p>
                   )}
                   <div className="flex mb-1.5 items-center gap-1">
-                    <MapPin size={16} />
+                    <MapPin className="text-green-700" size={16} />
                     <p className="text-base mt-1 leading-tight mb-1.5 font-medium">
                       {listing?.location}
                     </p>
                   </div>
                   <div className="flex items-center flex-row gap-10">
                     <div className="flex items-center gap-1 flex-row ">
-                      <BedDouble size={14} />
+                      <BedDouble className="text-green-700" size={14} />
                       {listing?.bedrooms === 1 ? (
-                        <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedroom`}</p>
+                        <p className="text-xs md:text-sm font-[700]">{`${listing?.bedrooms} Bedroom`}</p>
                       ) : (
-                        <p className="text-xs md:text-sm font-medium">{`${listing?.bedrooms} Bedrooms`}</p>
+                        <p className="text-xs md:text-sm font-[700]">{`${listing?.bedrooms} Bedrooms`}</p>
                       )}
                     </div>
                     <div className="flex items-center gap-1 flex-row">
-                      <Bath size={14} />
+                      <Bath className="text-green-700" size={14} />
                       {listing?.bathrooms === 1 ? (
-                        <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathroom`}</p>
+                        <p className="text-xs md:text-sm font-[700]">{`${listing?.bathrooms} Bathroom`}</p>
                       ) : (
-                        <p className="text-xs md:text-sm font-medium">{`${listing?.bathrooms} Bathrooms`}</p>
+                        <p className="text-xs md:text-sm font-[700]">{`${listing?.bathrooms} Bathrooms`}</p>
                       )}
                     </div>
                   </div>
                   <Separator className="my-1.5 md:my-4" />
                   <div>
-                    <p className="text-base mb-1.5 font-[700]">
+                    <p className="text-xl mb-1.5 font-[700]">
                       Property Information
                     </p>
-                    <p className="font-normal text-sm">
+                    <p className="text-base font-medium">
                       {listing?.description}
                     </p>
                   </div>
@@ -261,10 +261,10 @@ export default function ListingDetails() {
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div className="text-sm">
-                      <p className="font-medium capitalize">
+                      <p className="font-[700] capitalize">
                         {agentDetails?.name}
                       </p>
-                      <p>{agentDetails?.email}</p>
+                      <p className="font-medium">{agentDetails?.email}</p>
                     </div>
                   </div>
                   {/* <Separator className="md:hidden my-1.5" /> */}

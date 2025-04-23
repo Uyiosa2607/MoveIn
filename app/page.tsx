@@ -16,7 +16,7 @@ export default function Home() {
           {/* <div className="insert-0 w-full h-full bg-cover  absolute " /> */}
 
           {/* Hero Text and button */}
-          <div className="z-[100] absolute pl-3 lg:pl-20 text-white top-[35%] lg:top-[30%] w-full">
+          <div className="z-[100] absolute lg:pl-20 text-white top-[35%] lg:top-[30%] w-full">
             <h2 className="leading-tight text-center text-3xl lg:text-left  lg:text-7xl mb-1.5 lg:mb-4 lg:w-[50%]  capitalize font-semibold ">
               Find your dream house
             </h2>
@@ -36,6 +36,7 @@ export default function Home() {
             alt="hero image"
             src="/hero_image.jpg"
             quality={100}
+            priority
             className="w-full h-[100%] brightness-75  object-cover"
           />
         </div>
@@ -62,36 +63,32 @@ export default function Home() {
         {/* listing container ends here */}
 
         {/* why choose  us section */}
-        <div className="hidden rounded-2xl bg-[url('/modern_house.jpg')] relative bg-center text-white bg-cover h-[300px] lg:h-[420px] mt-10 w-full">
-          <div className="h-fit bg-stone-100 rounded-2xl lg:right-[5%]  lg:top-[10%] absolute text-[#1B1D29] w-[320px] lg:w-[400px]  pl-3 lg:pl-7 pb-4 pt-2">
-            <h4 className="font-medium w-fit text-base mb-1 lg:mb-1.5 text-yellow-400">
-              features
-            </h4>
-            <h2 className="font-semibold w-fit mb-0.5 lg:mb-2.5 text-2xl lg:text-3xl ">
-              Why choose us
-            </h2>
-            <p className="text-sm w-[95%] font-medium mb-3 lg:mb-3">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. A
-              corrupti delectus neque nihil repudiandae similique!
-            </p>
-            <div className="flex gap-2 font-medium text-sm w-fit flex-col">
-              <div className="flex gap-1.5 items-center flex-row">
-                <div className="w-4 h-4 border-[3px] border-yellow-400 rounded-full"></div>
-                <p>Trusted Company</p>
-              </div>
-              <div className="flex  gap-1.5 items-center flex-row">
-                <div className="w-4 border-[3px] border-yellow-400 h-4 rounded-full"></div>
-                <p>Transparent Pricing</p>
-              </div>
-              <div className="flex gap-1.5 items-center flex-row">
-                <div className="w-4 border-[3px] border-yellow-400 h-4 rounded-full"></div>
-                <p>Professional Support</p>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* why choose us ends here */}
       </div>
+      <section className="mt-10 h-[240px] relative lg:h-[400px]">
+        <div className="absolute z-[50] top-[20%]  w-full">
+          <h3 className="text-xl lg:text-5xl  text-white font-[Montserrat] w-[90%] mx-auto text-center font-semibold">
+            Find Your Perfect Property is Just a Click Away
+          </h3>
+          <p className="w-[90%] mt-1 text-sm lg:text-base text-center text-white mx-auto">
+            Start browsing our property listings today and take the first step
+            towards making your home ownership dreams a reality
+          </p>
+          <button className="flex mt-3 text-sm text-neutral-800 font-[600] place-self-center w-fit py-1.5 px-3 bg-white  rounded-lg">
+            Become an agent
+          </button>
+        </div>
+        <Image
+          src="/model-home.jpg"
+          quality={100}
+          width={1000}
+          height={10000}
+          priority
+          alt="model sized home"
+          className="w-full h-full brightness-75 object-cover"
+        />
+      </section>
       <Footer />
     </div>
   );
