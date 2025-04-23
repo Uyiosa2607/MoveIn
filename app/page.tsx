@@ -58,13 +58,11 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* listing container */}
+        {/* listings container */}
+
         <HomeGrid />
-        {/* listing container ends here */}
 
-        {/* why choose  us section */}
-
-        {/* why choose us ends here */}
+        {/* listings container */}
       </div>
       <section className="mt-10 h-[240px] relative lg:h-[400px]">
         <div className="absolute z-[50] top-[20%]  w-full">

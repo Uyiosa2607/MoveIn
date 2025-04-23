@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="bg-[#0b1d27] text-white h-fit pt-8 pb-10 mt-8">
+    <div className="bg-[#0b1d27] text-white h-fit pt-8 pb-10">
       <div className="container px-2 md:w-[100%] lg:w-[70%] mx-auto">
         <div className="flex flex-col md:flex-row gap-5 md:gap-20 md:items-center">
           <div className="flex-2 flex gap-4  flex-col">
