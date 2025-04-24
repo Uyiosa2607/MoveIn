@@ -20,7 +20,7 @@ export default function Header() {
           </div>
         </Link>
         <div
-          className={`flex md:flex md:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 md:pl-0 md:pt-0 absolute md:relative w-[50%] md:w-auto h-[100vh] md:h-0 right-0 top-0 capitalize flex-col md:flex-row gap-12 font-[700] text-base ${
+          className={`flex md:flex md:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 md:pl-0 md:pt-0 absolute md:relative w-full md:w-auto h-[100vh] md:h-0 right-0 top-0 capitalize flex-col md:flex-row gap-12 font-[700] text-base ${
             navOpen
               ? "translate-x-0  overflow-y-clip"
               : "translate-x-full md:translate-x-0"

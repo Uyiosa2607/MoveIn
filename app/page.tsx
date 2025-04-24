@@ -64,12 +64,12 @@ export default function Home() {
 
         {/* listings container */}
       </div>
-      <section className="mt-10 h-[240px] relative lg:h-[400px]">
+      <section className="mt-10 h-[240px]  relative lg:h-[400px]">
         <div className="absolute z-[50] top-[20%]  w-full">
-          <h3 className="text-xl lg:text-5xl  text-white font-[Montserrat] w-[90%] mx-auto text-center font-semibold">
+          <h3 className="text-xl lg:text-5xl text-white font-[Montserrat] w-[95%] mx-auto text-center font-semibold">
             Find Your Perfect Property is Just a Click Away
           </h3>
-          <p className="w-[90%] mt-1 text-sm lg:text-base text-center text-white mx-auto">
+          <p className="w-[95%] mt-1 text-sm lg:text-base text-center text-white mx-auto">
             Start browsing our property listings today and take the first step
             towards making your home ownership dreams a reality
           </p>
