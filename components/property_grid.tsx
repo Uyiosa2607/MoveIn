@@ -23,6 +23,7 @@ interface Listing {
 
 export default function PropertyGrid() {
   const [listings, setListings] = useState<Listing[]>([]);
+  const [properties, setProperties] = useState<Listing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [city, setCity] = useState<string>("benin city");
   const [bedroom, setBedroom] = useState<number>(0);
@@ -35,6 +36,7 @@ export default function PropertyGrid() {
       const { data, error } = await supabase.from("listings").select();
       if (!error) {
         setListings(data);
+        setProperties(data);
         setLoading(false);
       }
     } catch (error) {
@@ -42,7 +44,7 @@ export default function PropertyGrid() {
     }
   }
 
-  const filteredProperties = listings.filter((property) => {
+  const filteredProperties = properties.filter((property) => {
     return (
       (city ? property.city === city : true) &&
       (bathroom ? property.bathrooms === bathroom : true) &&
@@ -77,11 +79,12 @@ export default function PropertyGrid() {
                 <Label>
                   <p className="text-base">City</p>
                 </Label>
-                <Select onValueChange={(value) => setCity(value)}>
+                <Select value={city} onValueChange={(value) => setCity(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select City" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="#">All</SelectItem>
                     <SelectItem value="benin city">Benin City</SelectItem>
                     <SelectItem value="lagos">Lagos</SelectItem>
                     <SelectItem value="port harcourt">Port Harcourt</SelectItem>
@@ -93,11 +96,15 @@ export default function PropertyGrid() {
                 <Label>
                   <p className="text-base">Bedroom</p>
                 </Label>
-                <Select onValueChange={(value) => setBedroom(Number(value))}>
+                <Select
+                  value={String(bedroom)}
+                  onValueChange={(value) => setBedroom(Number(value))}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select Bedroom" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="0">Default</SelectItem>
                     <SelectItem value="1">1</SelectItem>
                     <SelectItem value="2">2</SelectItem>
                     <SelectItem value="3">3</SelectItem>
@@ -110,11 +117,15 @@ export default function PropertyGrid() {
                 <Label>
                   <p className="text-base">Bathroom</p>
                 </Label>
-                <Select onValueChange={(value) => setBathroom(Number(value))}>
+                <Select
+                  value={String(bathroom)}
+                  onValueChange={(value) => setBathroom(Number(value))}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select Bathroom" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="0">Default</SelectItem>
                     <SelectItem value="1">1</SelectItem>
                     <SelectItem value="2">2</SelectItem>
                     <SelectItem value="3">3</SelectItem>
@@ -123,12 +134,14 @@ export default function PropertyGrid() {
                 </Select>
               </div>
 
-              <button
-                onClick={handleFilter}
-                className="w-full text-base my-2 font-semibold bg-green-700 text-white py-2 rounded-lg"
-              >
-                Apply
-              </button>
+              <DialogTrigger asChild>
+                <button
+                  onClick={handleFilter}
+                  className="w-full text-base my-2 font-semibold bg-green-700 text-white py-2 rounded-lg"
+                >
+                  Apply
+                </button>
+              </DialogTrigger>
             </div>
           </DialogContent>
         </Dialog>
