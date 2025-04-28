@@ -246,6 +246,7 @@ export default function ListingDetails() {
                 </>
               )}
             </div>
+            <Separator className="md:hidden" />
             <div className="flex-[1] flex flex-col justify-end">
               {loading ? (
                 <>
@@ -267,7 +268,6 @@ export default function ListingDetails() {
                       <p className="font-medium">{agentDetails?.email}</p>
                     </div>
                   </div>
-                  {/* <Separator className="md:hidden my-1.5" /> */}
                   <div className="flex mt-4 w-full  flex-col gap-4">
                     <a href={`tel:${agentDetails?.phone}`}>
                       <div className="flex px-4 place-content-center text-white gap-1 py-1.5 rounded-xl text-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer flex-row items-center w-[95%] md:w-[90%] mx-auto">
