@@ -18,14 +18,14 @@ interface Listing {
   location: string;
   id: string;
   img: [];
-  city: string;
+  city: string | number;
 }
 
 export default function PropertyGrid() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [properties, setProperties] = useState<Listing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [city, setCity] = useState<string>("benin city");
+  const [city, setCity] = useState("all");
   const [bedroom, setBedroom] = useState<number>(0);
   const [bathroom, setBathroom] = useState<number>(0);
 
@@ -79,12 +79,18 @@ export default function PropertyGrid() {
                 <Label>
                   <p className="text-base">City</p>
                 </Label>
-                <Select value={city} onValueChange={(value) => setCity(value)}>
+                <Select
+                  value={city}
+                  onValueChange={(value) => {
+                    if (value === "all") return setCity("");
+                    setCity(value);
+                  }}
+                >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select City" />
+                    <SelectValue placeholder="All" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="#">All</SelectItem>
+                    <SelectItem value="all">All</SelectItem>
                     <SelectItem value="benin city">Benin City</SelectItem>
                     <SelectItem value="lagos">Lagos</SelectItem>
                     <SelectItem value="port harcourt">Port Harcourt</SelectItem>
