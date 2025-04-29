@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Bath, BedDouble } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { formatToNaira } from "@/lib/utils";
+import { Card } from "./ui/card";
 import Link from "next/link";
 
 interface CardProp {
@@ -20,7 +21,7 @@ interface CardProp {
 export default function HomeListingCard({ listing }: CardProp) {
   return (
     <Link href={`listing/${listing.id}`}>
-      <div className="w-full relative">
+      <Card className="w-full  hover:shadow-lg transition-transform duration-500 relative">
         <p
           className={`w-fit px-1.5 py-0.5 rounded-lg font-semibold font-[Montserrat] absolute left-[5%] top-[4%] lg:top-[7%] text-xs    text-neutral-800 ${
             listing?.category === "rent" ? "bg-yellow-400" : "bg-green-400"
@@ -34,7 +35,7 @@ export default function HomeListingCard({ listing }: CardProp) {
           quality={100}
           height={500}
           src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing.img[0]}`}
-          className="object-fit rounded-t-2xl lg:rounded-t-3xl w-full h-[120px] lg:h-[190px]"
+          className="object-fit  w-full h-[120px] hover:scale-105 transition-transform duration-500  lg:h-[190px]"
         />
         <div className="p-[8px] rounded-b-3xl bg-stone-100">
           <p className="text-xs lg:text-sm w-full truncate mb-2.5 font-semibold font-[Montserrat]">
@@ -71,7 +72,7 @@ export default function HomeListingCard({ listing }: CardProp) {
             </div>
           </div>
         </div>
-      </div>
+      </Card>
     </Link>
   );
 }

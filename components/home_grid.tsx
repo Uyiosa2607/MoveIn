@@ -37,7 +37,7 @@ export default function HomeGrid() {
   }, []);
 
   return (
-    <div>
+    <section className="bg-gray-50">
       {loading ? (
         <>
           {
@@ -63,6 +63,6 @@ export default function HomeGrid() {
           }
         </>
       )}
-    </div>
+    </section>
   );
 }
