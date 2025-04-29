@@ -167,9 +167,9 @@ export default function HomePage() {
                     <i className="fas fa-star"></i>
                   </div>
                   <p className="text-gray-700">
-                    "EstateElite made finding our dream home a breeze. Our agent
-                    understood exactly what we were looking for and found us the
-                    perfect property within our budget."
+                    &quot; MoveIn made finding our dream home a breeze. Our
+                    agent understood exactly what we were looking for and found
+                    us the perfect property within our budget &quot;
                   </p>
                 </CardContent>
               </Card>
@@ -195,9 +195,9 @@ export default function HomePage() {
                     <i className="fas fa-star"></i>
                   </div>
                   <p className="text-gray-700">
-                    "I sold my property through EstateElite and was impressed by
-                    their professionalism. They marketed my home effectively and
-                    secured a sale above asking price!"
+                    &quot;I sold my property through EstateElite and was
+                    impressed by their professionalism. They marketed my home
+                    effectively and secured a sale above asking price!&quot;
                   </p>
                 </CardContent>
               </Card>
@@ -223,9 +223,10 @@ export default function HomePage() {
                     <i className="fas fa-star-half-alt"></i>
                   </div>
                   <p className="text-gray-700">
-                    "The investment advisory team at EstateElite helped me build
-                    a profitable real estate portfolio. Their market insights
-                    and personalized approach exceeded my expectations."
+                    &quot;The investment advisory team at EstateElite helped me
+                    build a profitable real estate portfolio. Their market
+                    insights and personalized approach exceeded my
+                    expectations.&quot;
                   </p>
                 </CardContent>
               </Card>
@@ -251,9 +252,9 @@ export default function HomePage() {
                     <i className="fas fa-star"></i>
                   </div>
                   <p className="text-gray-700">
-                    "As first-time homebuyers, we appreciated the guidance and
-                    patience of our EstateElite agent. They made a complicated
-                    process feel simple and stress-free."
+                    &quot;As first-time homebuyers, we appreciated the guidance
+                    and patience of our EstateElite agent. They made a
+                    complicated process feel simple and stress-free.&quot;
                   </p>
                 </CardContent>
               </Card>
