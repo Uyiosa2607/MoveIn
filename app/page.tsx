@@ -83,27 +83,29 @@ export default function HomePage() {
           </p>
         </div>
         <div className="flex items-center gap-4 flex-col lg:flex-row">
-          <Card className="flex-1 flex flex-col h-[180px] items-center justify-center">
+          <Card className="flex-1 py-4 flex flex-col h-[180px] items-center justify-center">
             <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
               <Home className="text-blue-600" size={25} />
             </div>
-            <h4 className="text-base my-1.5 font-[600]">Property Sales</h4>
+            <h4 className="text-base  my-1.5 font-[600]">Property Sales</h4>
             <p className="text-sm text-gray-600 font-medium w-[80%] text-center">
               Our expert agents will help you sell your property at the best
               possible price with a tailored marketing strategy.
             </p>
           </Card>
-          <Card className="flex-1 flex  flex-col h-[180px] items-center justify-center">
+          <Card className="flex-1  py-4  flex-col h-[180px] items-center justify-center">
             <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
               <ChartLine className="text-blue-600" size={25} />
             </div>
-            <h4 className="text-base my-1.5 font-[600]">Investment Advisory</h4>
+            <h4 className="text-base my-1.5 text-center font-[600]">
+              Investment Advisory
+            </h4>
             <p className="text-sm text-gray-600 font-medium w-[80%] text-center">
               Get expert advice on real estate investments to maximize returns
               and build a valuable property portfolio.
             </p>
           </Card>
-          <Card className="flex-1 flex  flex-col h-[180px] items-center justify-center">
+          <Card className="flex-1 flex  py-4 flex-col h-[180px] items-center justify-center">
             <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
               <Search className="text-blue-600" size={25} />
             </div>

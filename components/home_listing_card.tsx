@@ -37,7 +37,7 @@ export default function HomeListingCard({ listing }: CardProp) {
           src={`${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/storage/${listing.img[0]}`}
           className="object-fit  w-full h-[120px] hover:scale-105 transition-transform duration-500  lg:h-[190px]"
         />
-        <div className="p-[8px] rounded-b-3xl bg-stone-100">
+        <div className="p-[8px]">
           <p className="text-xs lg:text-sm w-full truncate mb-2.5 font-semibold font-[Montserrat]">
             {listing?.title}
           </p>
