@@ -119,7 +119,7 @@ export default function HomePage() {
         {/* Enhanced listing section title bar */}
         <div className="flex items-center mb-8 lg:mb-10">
           <div className="flex-1">
-            <h3 className="font-bold text-2xl lg:text-4xl text-gray-900 mb-2">
+            <h3 className="font-bold text-lg md:text-4xl text-gray-900 mb-2">
               Featured Listings
             </h3>
             <p className="text-gray-600 text-sm lg:text-base">
@@ -131,7 +131,7 @@ export default function HomePage() {
             href="/properties"
           >
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
-              <p className="font-semibold text-base lg:text-lg">View All</p>
+              <p className="font-semibold text-sm lg:text-lg">View All</p>
               <ArrowRight
                 className="transition-transform group-hover:translate-x-1"
                 size={18}
