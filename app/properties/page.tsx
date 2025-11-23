@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import PropertyGrid from "@/components/property_grid";
+import PropertyGrid from "@/components/property-grid";
 
 export default function Properties() {
   return (

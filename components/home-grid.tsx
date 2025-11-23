@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import HomeListingCard from "@/components/home_listing_card";
+import HomeListingCard from "@/components/home-listing_card";
 import { supabase } from "@/lib/supabase";
 import { Skeleton } from "@/components/ui/skeleton";
 
