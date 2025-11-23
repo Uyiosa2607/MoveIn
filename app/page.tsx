@@ -75,7 +75,7 @@ export default function HomePage() {
       </div>
 
       {/* Stats Section */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-10 lg:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
             <div className="text-center">
@@ -375,18 +375,18 @@ export default function HomePage() {
           <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 lg:mb-6">
             Ready to Find Your Perfect Home?
           </h2>
-          <p className="text-lg lg:text-xl text-blue-100 mb-6 lg:mb-8">
+          <p className="text-base lg:text-xl text-blue-100 mb-6 lg:mb-8">
             Join thousands of satisfied clients who found their dream properties
             with us
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/properties">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+              <button className="bg-white text-blue-600 px-8 py-2.5 rounded-xl font-semibold text-base hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
                 Get Started
               </button>
             </Link>
             <Link href="/contact">
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all">
+              <button className="bg-transparent border-2 border-white text-white px-8 py-2.5 rounded-xl font-bold text-base hover:bg-white hover:text-blue-600 transition-all">
                 Contact Us
               </button>
             </Link>

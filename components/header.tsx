@@ -2,54 +2,151 @@
 import { useState } from "react";
 import { Menu, X, House } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
+  const pathname = usePathname();
 
   function toggleNav() {
     setNavOpen(!navOpen);
   }
 
+  function closeNav() {
+    setNavOpen(false);
+  }
+
+  const isActive = (path: string) => {
+    return pathname === path;
+  };
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/properties", label: "Listings" },
+    { href: "/saved-listing", label: "Favorites" },
+  ];
+
   return (
-    <div className="p-4 fixed bg-stone-100 mb-4 top-0 z-[300] w-full text-[#1B1D29]">
-      <div className="flex items-center  justify-between flex-row">
-        <Link href="/">
-          <div className="flex items-center gap-1 flex-row">
-            <House size={35} />
-            <h3 className="font-bold font-[Boldonse] mt-1 text-base">MoveIn</h3>
+    <header className="fixed top-0 z-[300] w-full bg-white shadow-md">
+      <div className="container mx-auto px-2.5 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" onClick={closeNav}>
+            <div className="flex items-center gap-2 group cursor-pointer">
+              <div className="p-2 bg-blue-600 rounded-xl group-hover:bg-blue-700 transition-colors">
+                <House size={24} className="text-white" />
+              </div>
+              <h3 className="font-bold text-xl text-gray-900 group-hover:text-blue-600 transition-colors">
+                MoveIn
+              </h3>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-semibold text-base capitalize transition-colors relative group ${
+                  isActive(link.href)
+                    ? "text-blue-600"
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                    isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA Button - Desktop */}
+          <div className="hidden md:block">
+            <Link href="/properties">
+              <button className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                Get Started
+              </button>
+            </Link>
           </div>
-        </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleNav}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
+          >
+            <Menu size={24} className="text-gray-900" />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div
+        className={`fixed inset-0 z-[400] md:hidden transition-opacity duration-300 ${
+          navOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        {/* Backdrop */}
         <div
-          className={`flex md:flex md:justify-center transition-transform ease-in-out duration-300 items-center bg-white pt-[18%] pl-2.5 md:pl-0 md:pt-0 absolute md:relative w-full md:w-auto h-[100vh] md:h-0 right-0 top-0 capitalize flex-col md:flex-row gap-12 font-[700] text-base ${
-            navOpen
-              ? "translate-x-0  overflow-y-clip"
-              : "translate-x-full md:translate-x-0"
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={closeNav}
+        />
+
+        {/* Slide-in Menu */}
+        <div
+          className={`absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
+            navOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <X
-            onClick={toggleNav}
-            className="md:hidden absolute my-6 top-1 right-3"
-          />
-          {/* <Link className=" hover:text-yellow-400" href="/">
-            <p>Home</p>
-          </Link> */}
+          {/* Mobile Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b">
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-blue-600 rounded-xl">
+                <House size={20} className="text-white" />
+              </div>
+              <h3 className="font-bold text-lg text-gray-900">MoveIn</h3>
+            </div>
+            <button
+              onClick={closeNav}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Close menu"
+            >
+              <X size={24} className="text-gray-900" />
+            </button>
+          </div>
 
-          <Link className=" hover:text-yellow-400" href="/properties">
-            <p>listings</p>
-          </Link>
-          <Link className=" hover:text-yellow-400" href="/saved-listing">
-            <p>favorites</p>
-          </Link>
-          <Link className=" hover:text-yellow-400" href="/abouts">
-            <p>about</p>
-          </Link>
+          {/* Mobile Navigation Links */}
+          <nav className="flex flex-col p-6 space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={closeNav}
+                className={`px-4 py-3 rounded-xl font-semibold text-base capitalize transition-all ${
+                  isActive(link.href)
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile CTA */}
+          <div className="absolute bottom-8 left-6 right-6">
+            <Link href="/properties" onClick={closeNav}>
+              <button className="w-full px-6 py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg text-base">
+                Get Started
+              </button>
+            </Link>
+          </div>
         </div>
-        {/* <div className="hidden md:flex items-center gap-1">
-          <Mail size={15} />
-          <p className="font-medium  text-sm">Get a Quote</p>
-        </div> */}
-        <Menu onClick={toggleNav} className="block md:hidden" />
       </div>
-    </div>
+    </header>
   );
 }
